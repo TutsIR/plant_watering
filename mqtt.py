@@ -1,4 +1,5 @@
 import paho.mqtt.client as mqtt
+import json
 
 broker_address = 'rpi3a'
 broker_port = 1883
@@ -12,7 +13,8 @@ def on_connect(client, userdata, flags, rc):
 
 
 def on_message(client, userdata, msg):
-    print("Received message: " + msg.payload.decode())
+    decoded_message = json.loads(msg.payload.decode())
+    print("Received message: " + str(decoded_message))
 
 
 client = mqtt.Client(client_id=client_id,
