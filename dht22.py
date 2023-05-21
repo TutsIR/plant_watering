@@ -14,6 +14,6 @@ while True:
         print(f'Temperature: {temperature:.2f} C')
         print(f'Humidity: {humidity:.2f} %')
     else:
-        print('Failed to read data from DHT11 sensor')
+        print('Failed to read data from DHT22 sensor')
 
     time.sleep(5)
