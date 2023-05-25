@@ -58,7 +58,8 @@ try:
             "needs_water": needsWater
         }
         soil_sensor_message = json.dumps(msg)
-        client.publish("watering", soil_sensor_message)
+        print(soil_sensor_message)
+        client.publish("needs_water", soil_sensor_message)
         time.sleep(5)
 
 
