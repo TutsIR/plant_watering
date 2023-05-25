@@ -9,6 +9,8 @@ GPIO.setmode(GPIO.BCM)
 broker_address = 'rpi3a'
 broker_port = 1883
 client_id = "my-client"
+soil_sensor_pin = 17
+GPIO.setup(soil_sensor_pin, GPIO.IN)
 
 
 # Callback functions
@@ -51,7 +53,15 @@ client.loop_start()
 # Wait for messages
 try:
     while True:
-        pass
+        needsWater = GPIO.input(soil_sensor_pin)
+        msg = {
+            "needs_water": needsWater
+        }
+        soil_sensor_message = json.dumps(msg)
+        client.publish("watering", soil_sensor_message)
+        time.sleep(5)
+
+
 except KeyboardInterrupt:
     pass
 
